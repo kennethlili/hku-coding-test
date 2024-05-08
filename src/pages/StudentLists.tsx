@@ -6,7 +6,7 @@ export function StudentLists() {
   const { studentsList, addStudent, removeStudent } = useStudents();
   const [openDialog, setOpenDialog] = useState(false);
   return (
-    <div className="">
+    <div className="flex flex-col gap-4 p-8">
       <h1>Student Lists</h1>
       <table>
         <thead>
