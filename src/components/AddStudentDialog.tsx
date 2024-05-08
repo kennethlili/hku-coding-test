@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from "react";
-import { Student } from "../hooks/useStudents";
+import { Faculty, Student } from "../hooks/useStudents";
 import {
   Dialog,
   DialogContent,
@@ -25,6 +25,13 @@ export function AddStudentDialog({
     setStudent({
       ...student,
       [e.target.id]: e.target.value,
+    });
+  };
+
+  const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    setStudent({
+      ...student,
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -66,12 +73,17 @@ export function AddStudentDialog({
             <Label htmlFor="name" className="text-right">
               Faculty of study
             </Label>
-            <Input
-              id="facultyOfStudy"
-              className="col-span-3"
+            <select
+              name="faculty"
               value={student.faculty}
-              onChange={handleChange}
-            />
+              onChange={handleSelectChange}
+            >
+              {Object.values(Faculty).map((faculty) => (
+                <option key={faculty} value={faculty}>
+                  {faculty}
+                </option>
+              ))}
+            </select>
           </div>
 
           <div className="grid grid-cols-4 items-center gap-4">
