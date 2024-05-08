@@ -1,3 +1,4 @@
+import { AddStudentDialog } from "../components/AddStudentDialog";
 import { Student, useStudents } from "../hooks/useStudents";
 
 export function StudentLists() {
@@ -33,7 +34,7 @@ export function StudentLists() {
           
         </tbody>
       </table>
-      <button>Add More Student</button>
+      <AddStudentDialog addStudent={addStudent}/>
     </div>
   );
 }
