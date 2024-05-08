@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { v4 as uuidv4 } from 'uuid';
 
 export type Student = {
     id: string;
@@ -23,7 +24,7 @@ export enum Faculty {
 
 export function useStudents() {
     const [studentsList, setStudentsList] = useState<Student[]>([{
-        id: "1",
+        id: uuidv4(),
         name: "John Doe",
         email: "johnDoe@gmail.com",
         faculty: Faculty.Engineering,
@@ -31,7 +32,7 @@ export function useStudents() {
     }]);
 
     function addStudent(student: Student) {
-        setStudentsList([...studentsList, student]);
+        setStudentsList([...studentsList, {...student,id: uuidv4()}]);
     }
 
     function removeStudent(id: string) {
