@@ -16,8 +16,12 @@ import { Label } from "./ui/Label";
 
 export function AddStudentDialog({
   addStudent,
+  open,
+  onOpenChange,
 }: {
   addStudent: (student: Student) => void;
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
 }) {
   const [student, setStudent] = useState<Student>({} as Student);
 
@@ -35,8 +39,13 @@ export function AddStudentDialog({
     });
   };
 
+  const onAddStudent = (student: Student) => {
+    addStudent(student);
+    onOpenChange(false);
+  };
+
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogTrigger asChild>
         <button>Add More Student</button>
       </DialogTrigger>
@@ -99,7 +108,7 @@ export function AddStudentDialog({
           </div>
         </div>
         <DialogFooter>
-          <button type="button" onClick={() => addStudent(student)}>
+          <button type="submit" onClick={() => onAddStudent(student)}>
             Submit
           </button>
         </DialogFooter>
